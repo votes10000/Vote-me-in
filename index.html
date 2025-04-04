@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BestVote</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>PLEASE I NEED YOUR VOTE</h2>
+        <img src="logo.png" alt="BestVote Logo" class="logo">  
+
+        <h3>Vote For Me</h3>
+        <p class="candidate">Robyn Bacon</p>
+
+        <div class="vote-box">
+            <p>Total Votes: <span id="vote-count">5678</span> out of 10000</p>
+            <div class="progress-bar">
+                <div id="progress-fill" style="width: 56.78%;"></div>
+            </div>
+        </div>
+
+        <p class="votes-left">✔️ Total Votes To Win: <span id="votes-needed">4322</span></p>
+
+        <div class="buttons">
+            <button class="vote-btn instagram" onclick="vote('instagram')">VOTE WITH Instagram</button>
+            <button class="vote-btn email" onclick="vote('email')">VOTE WITH Email</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
