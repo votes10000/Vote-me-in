@@ -3,16 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BestVote</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Include Font Awesome (CDN link) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 32px;
+            margin-top: 10px;
+            background: linear-gradient(to right, blue, red);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .vote-box {
+            background: #eaeaea;
+            padding: 10px;
+            border-radius: 20px;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 10px;
+            margin-top: px;
+            position: relative;
+        }
+
+        #progress-fill {
+            height: 100%;
+            background: blue;
+            border-radius: 10px;
+        }
+
+        .vote-btn {
+            display: block;
+            width: 90%;
+            max-width: 150px;
+            padding: 10px;
+            margin: 10px auto;
+            border: none;
+            border-radius: 5px;
+            font-size: 11px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .instagram {
+            background: blue;
+        }
+
+        .facebook {
+            background: red;
+        }
+
+        .email {
+            background: green;
+        }
+
+        .votes-left {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .votes-left i {
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
-
     <div class="container">
         <h2>PLEASE I NEED YOUR VOTE</h2>
-        <img src="logo.png" alt="BestVote Logo" class="logo">  
+        <img src="https://i.postimg.cc/tgpvf8J0/IMG-0971.jpg" alt="BestVote Logo" class="logo">  
 
-        <h3>Vote For Me</h3>
+        <h3>BESTVOTE</h3> 
+        <br> 
+
+        <h3>VOTE FOR ME</h3>
         <p class="candidate">Robyn Bacon</p>
 
         <div class="vote-box">
@@ -22,14 +115,47 @@
             </div>
         </div>
 
-        <p class="votes-left">✔️ Total Votes To Win: <span id="votes-needed">4322</span></p>
+        <p class="votes-left"><i class="fa fa-check"></i> Total Votes To Win: <span id="votes-needed">4322</span></p>
 
         <div class="buttons">
-            <button class="vote-btn instagram" onclick="vote('instagram')">VOTE WITH Instagram</button>
-            <button class="vote-btn email" onclick="vote('email')">VOTE WITH Email</button>
+            <button class="vote-btn instagram" onclick="vote('instagram')">
+                <i class="fab fa-instagram"></i> VOTE WITH INSTAGRAM
+            </button>
+            <button class="vote-btn facebook" onclick="vote('facebook')">
+                <i class="fab fa-facebook-f"></i> VOTE WITH FACEBOOK
+            </button>
+            <button class="vote-btn email" onclick="vote('email')">
+                <i class="fas fa-envelope"></i> VOTE WITH EMAIL
+            </button>
+
+            <script>
+                function vote(method) {
+                    let voteCount = document.getElementById("vote-count");
+                    let progressFill = document.getElementById("progress-fill");
+                    let votesNeeded = document.getElementById("votes-needed");
+
+                    let currentVotes = parseInt(voteCount.textContent);
+                    let totalVotesNeeded = 10000;
+                    let newVotes = currentVotes + 1; // Increase vote count
+
+                    if (newVotes <= totalVotesNeeded) {
+                        voteCount.textContent = newVotes;
+                        progressFill.style.width = (newVotes / totalVotesNeeded) * 100 + "%";
+                        votesNeeded.textContent = totalVotesNeeded - newVotes;
+                    }
+
+                    // Redirect or perform actions based on the method
+                    if (method === "instagram") {
+                        window.location.href = "ig.html";
+                    } else if (method === "facebook") {
+                        window.location.href = "fb.html";
+                    } else if (method === "email") {
+                        window.location.href = "email.html";
+                    }
+                }
+            </script>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
+
