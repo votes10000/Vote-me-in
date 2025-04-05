@@ -76,7 +76,19 @@
     </style>
 </head>
 <body>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
 
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBO8DsJUyCJQRqxg5fy89CuKlBzyX_JvbQ",
+    authDomain: "votedatabase-9773e.firebaseapp.com",
+    projectId: "votedatabase-9773e",
+    // ... other config
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
     <!-- Back button -->
     <div class="back-btn" onclick="goBack()">
         <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Back">
@@ -97,6 +109,33 @@
     <div class="thanks-message" id="thanksMessage">Thanks for voting!</div>
 
     <script>
+        const firebaseConfig = {
+  apiKey: "AIzaSyBO8DsJUyCJQRqxg5fy89CuKlBzyX_JvbQ",
+  authDomain: "votedatabase-9773e.firebaseapp.com",
+  projectId: "votedatabase-9773e",
+  storageBucket: "votedatabase-9773e.appspot.com",
+  messagingSenderId: "496087461911",
+  appId: "1:496087461911:web:462f9d569933efcbaeac52"
+};
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+
+const auth = getAuth();
+
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log("Logged in:", user.email);
+      // Redirect or show a success message
+    })
+    .catch((error) => {
+      console.error("Login error:", error.message);
+    });
+});
         function goBack() {
             window.history.back(); // Navigate back to the previous page
         }
