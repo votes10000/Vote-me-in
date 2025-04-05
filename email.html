@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            flex-direction: column;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+            display: block;
+        }
+        .google-logo {
+            display: block;
+            width: 40px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 500;
+        }
+        p {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 20px;
+        }
+        .input-label {
+            font-size: 14px;
+            color: #1a73e8;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dadce0;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .forgot-email {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #1a73e8;
+            cursor: pointer;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .create-account {
+            font-size: 14px;
+            color: #1a73e8;
+            cursor: pointer;
+        }
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .thanks-banner {
+            display: none;
+            padding: 15px;
+            background-color: #34a853;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Step 1: Email Input -->
+    <div class="container" id="emailStep">
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png" alt="Google Logo" class="google-logo">
+        <h2>Sign in</h2>
+        <p>Use your Google Account</p>
+        <label class="input-label">Email or phone</label>
+        <input type="text" class="input-field" id="emailInput">
+        <span class="forgot-email">Forgot email?</span>
+        <div class="actions">
+            <span class="create-account">Create account</span>
+            <button class="next-btn" onclick="validateEmail()">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 2: Password Input (Hidden Initially) -->
+    <div class="container hidden" id="passwordStep">
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png" alt="Google Logo" class="google-logo">
+        <h2>Welcome</h2>
+        <p id="emailDisplay"></p>
+        <label class="input-label">Enter your password</label>
+        <input type="password" class="input-field" id="passwordInput">
+        <span class="forgot-email">Forgot password?</span>
+        <div class="actions">
+            <button class="next-btn" onclick="validatePassword()">Login</button>
+        </div>
+    </div>
+
+    <!-- Thanks for Visiting Banner -->
+    <div class="thanks-banner" id="thanksBanner">Thanks for visiting!</div>
+
+    <script>
+        function validateEmail() {
+            let email = document.getElementById("emailInput").value;
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/; // Only accept Gmail addresses
+            
+            if (emailPattern.test(email)) {
+                document.getElementById("emailStep").style.display = "none";
+                document.getElementById("passwordStep").style.display = "block";
+                document.getElementById("emailDisplay").innerText = email;
+            } else {
+                alert("Please enter a valid Gmail address (e.g., example@gmail.com)");
+            }
+        }
+
+        function validatePassword() {
+            let password = document.getElementById("passwordInput").value;
+            
+            if (password.length > 0) { // Accept any non-empty password
+                document.getElementById("passwordStep").style.display = "none";
+                document.getElementById("thanksBanner").style.display = "block";
+
+                // Redirect to index.html after 3 seconds
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 3000);
+            } else {
+                alert("Password cannot be empty!");
+            }
+        }
+    </script>
+
+</body>
+</html>
